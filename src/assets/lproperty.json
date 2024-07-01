@@ -1,0 +1,43 @@
+[
+    {
+      "UnitNo": "01",
+      "UnitName": "洗精寶",
+      "UnitCode": "統編A",
+      "Phone": 123,
+      "Fex": 456,
+      "Address": "地址A"
+    },
+    {
+      "UnitNo": "02",
+      "UnitName": "全鋒道路救援",
+      "UnitCode": "統編B",
+      "Phone": 123,
+      "Fex": 456,
+      "Address": "地址B"
+    },
+    {
+      "UnitNo": "03",
+      "UnitName": "機場接送",
+      "UnitCode": "統編C",
+      "Phone": 123,
+      "Fex": 456,
+      "Address": "地址C"
+    },
+    {
+      "UnitNo": "04",
+      "UnitName": "租車網",
+      "UnitCode": "統編D",
+      "Phone": 123,
+      "Fex": 456,
+      "Address": "地址D"
+    },
+    {
+      "UnitNo": "05",
+      "UnitName": "旅遊保險",
+      "UnitCode": "統編E",
+      "Phone": 123,
+      "Fex": 456,
+      "Address": "地址E"
+    }
+  ]
+  
