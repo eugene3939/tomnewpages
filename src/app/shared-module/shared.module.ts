@@ -13,6 +13,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [],
@@ -32,6 +34,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ConfirmDialogModule,
     DialogModule,
     ConfirmPopupModule,
+    HttpClientModule,
   ],
   exports: [
     CommonModule,
@@ -49,6 +52,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ConfirmDialogModule,
     DialogModule,
     ConfirmPopupModule,
+    HttpClientModule,
   ]
 })
 export class SharedModuleModule { }

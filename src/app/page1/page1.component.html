@@ -1,1 +1,58 @@
-<p>page1 works!</p>
+<!-- 使用單位建檔 -->
+<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+    <p-inputGroup [style]="{flexGrow: 1, marginRight: '50px', width: '10%'}">
+      <p-inputGroupAddon>單位編號</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位編號">
+  
+      <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位名稱">
+    </p-inputGroup>
+  
+    <p-button size="small" label="查詢" [raised]="true" severity="help"></p-button>
+    <p-button size="small" label="新增" [raised]="true" severity="info"></p-button>
+</div>
+
+<!-- 表單顯示欄位 -->
+<p-table [value]="jsonyData" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of cols" pSortableColumn="{{ col.field }}">
+          {{ col.header }} <p-sortIcon field="{{ col.field }}" />
+        </th>
+        <th style="width:10%">操作</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-i="rowIndex">
+      <tr>
+        <td>{{ product.UnitNo }}</td>
+        <td>{{ product.UnitName }}</td>
+        <td>{{ product.UnitCode }}</td>
+        <td>{{ product.Phone }}</td>
+        <td>{{ product.Fex }}</td>
+        <td>{{ product.Address }}</td>
+        <td>
+          <p-button
+            pRipple
+            label="v"
+            severity="success"
+            [outlined]="true"
+          ></p-button>
+          <p-button 
+            pRipple 
+            label="x"
+            severity="danger" 
+            [outlined]="true" 
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  <!-- 表單修改欄位(必須典籍修改開啟) -->
+  <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+    <p-button size="small"  label="下載到本機" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+    <p-button size="small"  label="保存到本地" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+    <p-button size="small"  label="取消變更" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  </div>
+  
+  <router-outlet></router-outlet>
