@@ -1,19 +1,21 @@
 <!-- 使用單位建檔 -->
-<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-    <p-inputGroup [style]="{flexGrow: 1, marginRight: '50px', width: '10%'}">
+<div>
+  <div style="display: flex; gap: 10px">
+    <p-inputGroup [style]="{'flex': '1'}">
       <p-inputGroupAddon>單位編號</p-inputGroupAddon>
       <input type="text" pInputText placeholder="請輸入單位編號">
-  
+
       <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
       <input type="text" pInputText placeholder="請輸入單位名稱">
     </p-inputGroup>
-  
-    <p-button size="small" label="查詢" [raised]="true" severity="help"></p-button>
+
+    <p-button size="small" label="查詢" [raised]="true" severity="help" [style]="{'margin-left': '100px'}"></p-button>
     <p-button size="small" label="新增" [raised]="true" severity="info"></p-button>
+  </div>
 </div>
 
 <!-- 表單顯示欄位 -->
-<p-table [value]="jsonyData" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
+<p-table [value]="localData" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols" pSortableColumn="{{ col.field }}">

@@ -53,6 +53,6 @@ import { HttpClientModule } from '@angular/common/http';
     DialogModule,
     ConfirmPopupModule,
     HttpClientModule,
-  ]
+  ],
 })
 export class SharedModuleModule { }

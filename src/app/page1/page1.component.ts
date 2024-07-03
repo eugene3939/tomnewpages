@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '../shared-module/shared.module';
-
+//form builder
 import { FormArray, FormBuilder } from '@angular/forms';
 //service
 import { MessageService } from 'primeng/api';
@@ -9,8 +9,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { HttpClient } from '@angular/common/http';
 //object
 import { MyProperty } from '../object/MyProperty';
-
-import propertyData  from '../../assets/lproperty.json';
 
 @Component({
   selector: 'app-page1',
@@ -27,9 +25,7 @@ import propertyData  from '../../assets/lproperty.json';
 })
 export class Page1Component implements OnInit{
   propertyForms: FormArray;               // 用fFormArray管理table顯示內容
-  localData: MyProperty[] = []; // 本地: jsonyData ; 遠端: propertyData
-
-  jsonyData: MyProperty[] = propertyData;
+  localData: MyProperty[] = [];           // 獲取本地 jsonyData
 
   cols = [  // 欄位名稱 (能否編輯)
     { header: '單位編號', field: 'UnitNo', editable: true, required: true },
@@ -41,7 +37,7 @@ export class Page1Component implements OnInit{
   ];
 
   //local json location
-  public jsonUrl = "../assets/lproperty.json";
+  public jsonUrl = "assets/lproperty.json";
 
   constructor(
     private fb: FormBuilder,
@@ -52,8 +48,6 @@ export class Page1Component implements OnInit{
 
   ngOnInit(): void {
     this.loadLocalJsonData();
-
-    console.log('相對路徑開啟',this.jsonyData);
   }
 
   // 讀取json表單
@@ -62,7 +56,7 @@ export class Page1Component implements OnInit{
     this.http.get<MyProperty[]>(this.jsonUrl).subscribe(
         data => {
           console.log('成功讀取 JSON 數據：', data);
-          // 在這裡可以將數據賦值給組件中的屬性，例如 this.localData = data;
+          this.localData = data;
         },
         error => {
           console.error('讀取 JSON 數據失敗：', error);
