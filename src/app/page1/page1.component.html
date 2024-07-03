@@ -9,41 +9,42 @@
       <input type="text" pInputText placeholder="請輸入單位名稱">
     </p-inputGroup>
 
-    <p-button size="small" label="查詢" [raised]="true" severity="help" [style]="{'margin-left': '100px'}"></p-button>
-    <p-button size="small" label="新增" [raised]="true" severity="info"></p-button>
+    <p-button size="small" label="查詢" [raised]="true" severity="help" (onClick)="openDialog()" [style]="{'margin-left': '100px'}"></p-button>
+    <p-button size="small" label="新增" [raised]="true" severity="info" (onClick)="addForm()"></p-button>
   </div>
 </div>
 
 <!-- 表單顯示欄位 -->
-<p-table [value]="localData" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
+<p-table [value]="propertyForms.controls" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols" pSortableColumn="{{ col.field }}">
-          {{ col.header }} <p-sortIcon field="{{ col.field }}" />
+          {{ col.header }}
         </th>
-        <th style="width:10%">操作</th>
+        <th>操作</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product let-i="rowIndex">
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
       <tr>
-        <td>{{ product.UnitNo }}</td>
-        <td>{{ product.UnitName }}</td>
-        <td>{{ product.UnitCode }}</td>
-        <td>{{ product.Phone }}</td>
-        <td>{{ product.Fex }}</td>
-        <td>{{ product.Address }}</td>
+        <td>{{ row.value.UnitNo }}</td>
+        <td>{{ row.value.UnitName }}</td>
+        <td>{{ row.value.UnitCode }}</td>
+        <td>{{ row.value.Phone}}</td>
+        <td>{{ row.value.Fex}}</td>
+        <td>{{ row.value.Address}}</td>
         <td>
           <p-button
             pRipple
-            label="v"
+            label="修改"
             severity="success"
             [outlined]="true"
           ></p-button>
           <p-button 
             pRipple 
-            label="x"
+            label="刪除"
             severity="danger" 
             [outlined]="true" 
+            (onClick)="deleteItem(i)"
           ></p-button>
         </td>
       </tr>
