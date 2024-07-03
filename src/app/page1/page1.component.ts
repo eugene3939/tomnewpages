@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '../shared-module/shared.module';
 //form builder
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder,FormsModule, Validators } from '@angular/forms';
 //service
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -11,12 +11,14 @@ import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 
 import { MyProperty } from '../object/MyProperty';
-import { Page2Component } from '../page2/page2.component';
 
 @Component({
   selector: 'app-page1',
   standalone: true,
-  imports: [SharedModuleModule],
+  imports: [
+    SharedModuleModule,
+    FormsModule,
+  ],
   providers:[
     ConfirmationService,
     DialogService,
@@ -27,7 +29,11 @@ import { Page2Component } from '../page2/page2.component';
   styleUrl: './page1.component.scss'
 })
 export class Page1Component implements OnInit{
+  searchUnitNo: string = '';
+  searchUnitName: string = '';
+
   propertyForms: FormArray;               // 用FormArray管理table顯示內容
+  filteredForms: FormArray;               // 篩選的表單內容
 
   cols = [  // 欄位名稱 (能否編輯)
     { header: '單位編號', field: 'UnitNo', editable: true, required: true },
@@ -45,15 +51,16 @@ export class Page1Component implements OnInit{
     private fb: FormBuilder,
     private http: HttpClient,
     private messageService: MessageService,
-    private dialogService: DialogService,
   ) {
     this.propertyForms = this.fb.array([]);
+    this.filteredForms = this.fb.array([]);
   }
 
   ngOnInit(): void {
     this.getJsonData(this.jsonUrl).subscribe(
       data => {
         this.createForms(data); // 根據 JSON 數據建立表單控件
+        this.filteredForms = this.propertyForms;
         console.log('成功讀取 JSON 數據：', this.propertyForms);
       },
       error => {
@@ -77,6 +84,24 @@ export class Page1Component implements OnInit{
     });
   }
 
+  //篩選表單
+  filterForms(): void {
+    const searchUnitNo = this.searchUnitNo.trim().toLowerCase();
+    const searchUnitName = this.searchUnitName.trim().toLowerCase();
+
+    this.filteredForms = this.fb.array(
+      this.propertyForms.controls.filter(group => {
+        const unitNo = group.get('UnitNo')?.value?.toLowerCase() ?? '';
+        const unitName = group.get('UnitName')?.value?.toLowerCase() ?? '';
+        const unitNoMatch = searchUnitNo ? unitNo.includes(searchUnitNo) : true;
+        const unitNameMatch = searchUnitName ? unitName.includes(searchUnitName) : true;
+        return unitNoMatch && unitNameMatch;
+      })
+    );
+
+    console.log('篩選結果', this.filteredForms.value);
+  }
+
   // 新增row
   addForm(): void {
     const newForm = this.fb.group({
@@ -92,23 +117,22 @@ export class Page1Component implements OnInit{
     console.log('新增成功',this.propertyForms.value)
   }
 
-
   //刪除row
   deleteItem(index: number): void {
     if (index !== -1) {
       this.propertyForms.removeAt(index); // 從 FormArray 中刪除指定行
       console.log('刪除成功',this.propertyForms.length)
-      this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', key: 'tl', life: 3000 });
+      this.messageService.add({ severity: 'success', summary: '成功', detail: '刪除成功' });
     }
   }
 
   //開啟新Dialoge
   openDialog() {
-    console.log('hello');
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+    this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', key: 'tl', life: 3000 });
   }
 
   getJsonData(url: string): Observable<any>{
     return this.http.get<any>(url);
   }
 }
+
