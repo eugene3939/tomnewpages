@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { HttpClientModule } from '@angular/common/http';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [],
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmDialogModule,
     DialogModule,
     ConfirmPopupModule,
+    KeyFilterModule,
     HttpClientModule,
   ],
   exports: [
@@ -51,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmDialogModule,
     DialogModule,
     ConfirmPopupModule,
+    KeyFilterModule,
     HttpClientModule,
   ],
 })

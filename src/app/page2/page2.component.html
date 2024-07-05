@@ -1,1 +1,23 @@
-<p>page2 works!</p>
+<br>
+<form [formGroup]="filterForm" (ngSubmit)="onFilter()">
+    <label for="role">角色編號</label>
+    <input id="role" formControlName="role" type="text">
+  
+    <label for="name">角色名稱</label>
+    <input id="name" formControlName="name" type="text">
+  
+    <button type="submit">查詢</button>
+    <button (click)="openAddDataPage()">新增</button>
+  </form>
+  
+  <div *ngIf="filteredData.length > 0">
+    <h3>Filtered Data:</h3>
+    <ul>
+      <li *ngFor="let item of filteredData">
+        {{ item.role }} - {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="filteredData.length === 0">
+    <p>No data matches the filter criteria.</p>
+  </div>

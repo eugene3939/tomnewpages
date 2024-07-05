@@ -1,0 +1,5 @@
+[
+    { "role": "Manager", "name": "經理", "unitNo": 25, "program_member": "程式A", "program": "程式A" },
+    { "role": "MIS", "name": "資訊管理人員", "unitNo": 30, "program_member": "程式B", "program": "程式B" },
+    { "role": "OP", "name": "操作人員", "unitNo": 35, "program_member": "程式C", "program": "程式C" }
+]

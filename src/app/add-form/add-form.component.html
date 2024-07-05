@@ -1,0 +1,29 @@
+<form [formGroup]="addDataForm" (ngSubmit)="onAddData()">
+    <label for="role">Role</label>
+    <input id="role" formControlName="role" type="text">
+
+    <br>
+  
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" type="text">
+
+    <br>
+  
+    <label for="unitNo">Unit No</label>
+    <input id="unitNo" formControlName="unitNo" type="number">
+
+    <br>
+  
+    <label for="program_member">Program Member</label>
+    <input id="program_member" formControlName="program_member" type="text">
+
+    <br>
+  
+    <label for="program">Program</label>
+    <input id="program" formControlName="program" type="text">
+
+    <br>
+  
+    <button type="submit">Add Data</button>
+  </form>
+  

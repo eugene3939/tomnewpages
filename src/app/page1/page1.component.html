@@ -1,4 +1,7 @@
+<br>
 <!-- 使用單位建檔 -->
+
+<!-- 表單搜尋列 -->
 <div>
   <div style="display: flex; gap: 10px">
     <p-inputGroup [style]="{'flex': '1'}">
@@ -14,16 +17,25 @@
   </div>
 </div>
 
+<br>
+
 <!-- 表單顯示欄位 -->
-<p-table [value]="filteredForms.controls" styleClass="p-datatable-striped" [tableStyle]="{ 'width': '80%' }">
+<p-table [value]="filteredForms.controls"
+         [resizableColumns]="true" 
+         styleClass="p-datatable-striped">
+    <!-- 欄位名稱 -->
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" pSortableColumn="{{ col.field }}">
-          {{ col.header }}
-        </th>
+        <th>{{ rowNameForms.get('UnitNo')?.value }}</th>
+        <th>{{ rowNameForms.get('UnitName')?.value }}</th>
+        <th>{{ rowNameForms.get('UnitCode')?.value }}</th>
+        <th>{{ rowNameForms.get('Phone')?.value }}</th>
+        <th>{{ rowNameForms.get('Fex')?.value }}</th>
+        <th>{{ rowNameForms.get('Address')?.value }}</th>
         <th>操作</th>
       </tr>
     </ng-template>
+    <!-- 欄位內容 -->
     <ng-template pTemplate="body" let-row let-i="rowIndex">
       <tr>
         <td>{{ row.value.UnitNo }}</td>
@@ -37,25 +49,56 @@
             pRipple
             label="修改"
             severity="success"
+            size="small"
             [outlined]="true"
           ></p-button>
           <p-button 
             pRipple 
             label="刪除"
             severity="danger" 
+            size="small"
             [outlined]="true" 
             (onClick)="deleteItem(i)"
           ></p-button>
         </td>
       </tr>
     </ng-template>
-  </p-table>
-  
-  <!-- 表單修改欄位(必須典籍修改開啟) -->
-  <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-    <p-button size="small"  label="下載到本機" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
-    <p-button size="small"  label="保存到本地" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
-    <p-button size="small"  label="取消變更" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</p-table>
+
+<br>
+
+<!-- 輸入欄位內容 -->
+<form [formGroup]="rowNameForms">
+  <div>
+    <label for="UnitNo" class="font-bold block mb-2">{{ rowNameForms.get('UnitNo')?.value }}: </label>  
+    <input pInputText id="UnitNo" pKeyFilter="num" class="w-full" formControlName="UnitNo" />
   </div>
+  <div>
+    <label for="UnitName" class="font-bold block mb-2">{{ rowNameForms.get('UnitName')?.value }}: </label>
+    <input pInputText id="UnitName" pKeyFilter="alpha" class="w-full" formControlName="UnitName" />
+  </div>
+  <div>
+    <label for="UnitCode" class="font-bold block mb-2">{{ rowNameForms.get('UnitCode')?.value }}: </label>
+    <input pInputText id="UnitCode" pKeyFilter="alpha" class="w-full" formControlName="UnitCode" />
+  </div>
+  <div>
+    <label for="Phone" class="font-bold block mb-2">{{ rowNameForms.get('Phone')?.value }}: </label>
+    <input pInputText id="Phone" pKeyFilter="int" class="w-full" formControlName="Phone" />
+  </div>
+  <div>
+    <label for="Fex" class="font-bold block mb-2">{{ rowNameForms.get('Fex')?.value }}: </label>
+    <input pInputText id="Fex" pKeyFilter="int" class="w-full" formControlName="Fex" />
+  </div>
+  <div>
+    <label for="Address" class="font-bold block mb-2">{{ rowNameForms.get('Address')?.value }}: </label>
+    <input pInputText id="Address" pKeyFilter="alpha" class="w-full" formControlName="Address" />
+  </div>
+</form>
+
+<!-- 表單修改欄位(必須點擊修改開啟) -->
+<div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
+  <p-button size="small" label="存檔" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</div>
   
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
