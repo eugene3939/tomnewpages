@@ -58,7 +58,7 @@ export class Page1Component implements OnInit{
     });
 
     this.editForm = this.fb.group({ //建立編輯表單
-      UnitNo: [{ value: '', disabled: true }, Validators.required], // 使用 disabled 屬性來禁用編輯
+      UnitNo: ['', Validators.required], // 使用 disabled 屬性來禁用編輯
       UnitName: ['', Validators.required],
       UnitCode: ['', Validators.required],
       Phone: ['', Validators.required],
@@ -114,21 +114,33 @@ export class Page1Component implements OnInit{
     console.log('篩選結果', this.filteredForms.value);
   }
 
-  //新增row
+  // 新增表單
   addForm(): void {
-    const newForm = this.fb.group({
-      UnitNo: ['新增編號', Validators.required],
-      UnitName: ['新增名稱', Validators.required],
-      UnitCode: ['新增統編', Validators.required],
-      Phone: ['新增電話', Validators.required],
-      Fex: ['新增傳真'],
-      Address: ['新增地址', Validators.required]
-    });
-    this.propertyForms.push(newForm); // 將新建的 FormGroup 添加到 FormGroup 陣列中
-    this.filteredForms = this.propertyForms //更新篩選清單
+    if (this.editForm.valid) {
+      const newForm = this.fb.group({
+        UnitNo: [this.editForm.get('UnitNo')?.value, Validators.required],
+        UnitName: [this.editForm.get('UnitName')?.value, Validators.required],
+        UnitCode: [this.editForm.get('UnitCode')?.value, Validators.required],
+        Phone: [this.editForm.get('Phone')?.value, Validators.required],
+        Fex: [this.editForm.get('Fex')?.value],
+        Address: [this.editForm.get('Address')?.value, Validators.required]
+      });
 
-    //重新讀取表單
-    console.log('新增成功',this.propertyForms.value)
+      // 檢查是否已經有相同 UnitNo，如果有則跳出警告
+      const unitNoExists = this.propertyForms.controls.some(form => form.value.UnitNo === newForm.value.UnitNo);
+      if (unitNoExists) {
+        console.warn('已存在相同的單位編號，請修改後再試。');
+        return;
+      }
+
+      this.propertyForms.push(newForm); // 將新建的 FormGroup 添加到 FormGroup 陣列中
+      this.filteredForms = this.propertyForms; // 更新篩選清單
+  
+      // 重新載入表單
+      console.log('新增成功', this.propertyForms.value);
+    } else {
+      console.warn('編輯表單無效，無法新增');
+    }
   }
 
   //刪除row
@@ -179,6 +191,8 @@ export class Page1Component implements OnInit{
         }
       } else {
         console.warn('找不到要編輯的行');
+        console.log('編輯行',this.editForm.value)
+
       }
     } else {
       console.warn('編輯表單無效，無法儲存');
