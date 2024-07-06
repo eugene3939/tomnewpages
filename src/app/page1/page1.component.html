@@ -51,6 +51,7 @@
             severity="success"
             size="small"
             [outlined]="true"
+            (onClick)="editItem(row.value)"
           ></p-button>
           <p-button 
             pRipple 
@@ -67,8 +68,8 @@
 
 <br>
 
-<!-- 輸入欄位內容 -->
-<form [formGroup]="rowNameForms">
+<!-- 編輯表單 -->
+<form [formGroup]="editForm">
   <div>
     <label for="UnitNo" class="font-bold block mb-2">{{ rowNameForms.get('UnitNo')?.value }}: </label>  
     <input pInputText id="UnitNo" pKeyFilter="num" class="w-full" formControlName="UnitNo" />
@@ -95,9 +96,10 @@
   </div>
 </form>
 
+
 <!-- 表單修改欄位(必須點擊修改開啟) -->
 <div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
-  <p-button size="small" label="存檔" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
   <p-button size="small" label="取消" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
 </div>
   
