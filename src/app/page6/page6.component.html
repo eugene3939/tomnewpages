@@ -1,0 +1,118 @@
+<br>
+<!-- 票券商品單位建檔 -->
+
+<!-- 表單顯示欄位 -->
+<p-table [value]="filteredForms.controls"
+         [resizableColumns]="true" 
+         styleClass="p-datatable-striped">
+    <!-- 欄位名稱 -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ rowNameForms.get('No')?.value }}</th>
+        <th>{{ rowNameForms.get('Property')?.value }}</th>
+        <th>{{ rowNameForms.get('Category')?.value }}</th>
+        <th>{{ rowNameForms.get('Name')?.value }}</th>
+        <th>{{ rowNameForms.get('Unit')?.value }}</th>
+        <th>{{ rowNameForms.get('SerialManagement')?.value }}</th>
+        <th>{{ rowNameForms.get('AvalibleDate')?.value }}</th>
+        <th>{{ rowNameForms.get('Gaphic')?.value }}</th>
+        <th>{{ rowNameForms.get('Cash')?.value }}</th>
+        <th>{{ rowNameForms.get('Tax')?.value }}</th>
+        <th>{{ rowNameForms.get('Etc')?.value }}</th>
+        <th>操作</th>
+      </tr>
+    </ng-template>
+    <!-- 欄位內容 -->
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr>
+        <td>{{ row.value.No }}</td>
+        <td>{{ row.value.Property }}</td>
+        <td>{{ row.value.Category }}</td>
+        <td>{{ row.value.Name}}</td>
+        <td>{{ row.value.Unit}}</td>
+        <td>{{ row.value.SerialManagement }}</td>
+        <td>{{ row.value.AvalibleDate }}</td>
+        <td>{{ row.value.Gaphic }}</td>
+        <td>{{ row.value.Cash}}</td>
+        <td>{{ row.value.Tax}}</td>
+        <td>{{ row.value.Etc}}</td>
+        <td>
+          <p-button
+            pRipple
+            label="修改"
+            severity="success"
+            size="small"
+            [outlined]="true"
+            (onClick)="editItem(row.value)"
+          ></p-button>
+          <p-button 
+            pRipple 
+            label="刪除"
+            severity="danger" 
+            size="small"
+            [outlined]="true" 
+            (onClick)="deleteItem(i)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
+
+<br>
+
+<!-- 編輯表單 -->
+<form [formGroup]="editForm">
+  <div>
+    <label for="No" class="font-bold block mb-2">{{ rowNameForms.get('No')?.value }}: </label>  
+    <input pInputText id="No" pKeyFilter="alpha" class="w-full" formControlName="No" />
+  </div>
+  <div>
+    <label for="Property" class="font-bold block mb-2">{{ rowNameForms.get('Property')?.value }}: </label>
+    <input pInputText id="Property" pKeyFilter="alpha" class="w-full" formControlName="Property" />
+  </div>
+  <div>
+    <label for="Category" class="font-bold block mb-2">{{ rowNameForms.get('Category')?.value }}: </label>
+    <input pInputText id="Category" pKeyFilter="int" class="w-full" formControlName="Category" />
+  </div>
+  <div>
+    <label for="Name" class="font-bold block mb-2">{{ rowNameForms.get('Name')?.value }}: </label>
+    <input pInputText id="Name" pKeyFilter="alpha" class="w-full" formControlName="Name" />
+  </div>
+  <div>
+    <label for="Unit" class="font-bold block mb-2">{{ rowNameForms.get('Unit')?.value }}: </label>
+    <input pInputText id="Unit" pKeyFilter="alpha" class="w-full" formControlName="Unit" />
+  </div>
+  <div>
+    <label for="SerialManagement" class="font-bold block mb-2">{{ rowNameForms.get('SerialManagement')?.value }}: </label>  
+    <input pInputText id="SerialManagement" pKeyFilter="alpha" class="w-full" formControlName="SerialManagement" />
+  </div>
+  <div>
+    <label for="AvalibleDate" class="font-bold block mb-2">{{ rowNameForms.get('AvalibleDate')?.value }}: </label>
+    <input pInputText id="AvalibleDate" pKeyFilter="alpha" class="w-full" formControlName="AvalibleDate" />
+  </div>
+  <div>
+    <label for="Gaphic" class="font-bold block mb-2">{{ rowNameForms.get('Gaphic')?.value }}: </label>
+    <input pInputText id="Gaphic" pKeyFilter="int" class="w-full" formControlName="Gaphic" />
+  </div>
+  <div>
+    <label for="Cash" class="font-bold block mb-2">{{ rowNameForms.get('Cash')?.value }}: </label>
+    <input pInputText id="Cash" pKeyFilter="alpha" class="w-full" formControlName="Cash" />
+  </div>
+  <div>
+    <label for="Tax" class="font-bold block mb-2">{{ rowNameForms.get('Tax')?.value }}: </label>
+    <input pInputText id="Tax" pKeyFilter="alpha" class="w-full" formControlName="Tax" />
+  </div>
+  <div>
+    <label for="Etc" class="font-bold block mb-2">{{ rowNameForms.get('Etc')?.value }}: </label>
+    <input pInputText id="Etc" pKeyFilter="alpha" class="w-full" formControlName="Etc" />
+  </div>
+</form>
+
+
+<!-- 表單修改欄位(必須點擊修改開啟) -->
+<div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
+  <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" (onClick)="backtoEditMode()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</div>
+  
+<router-outlet></router-outlet>

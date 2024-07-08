@@ -1,1 +1,68 @@
-<p>page5 works!</p>
+<!-- 商品建檔 -->
+<br>
+<!-- 表單搜尋列 -->
+<div>
+  <div style="display: flex; gap: 10px">
+    <p-inputGroup [style]="{'flex': '1'}">
+      <p-inputGroupAddon>單位編號</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位編號" [(ngModel)]="searchRole">
+
+      <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位名稱" [(ngModel)]="searchName">
+    </p-inputGroup>
+
+    <p-button size="small" label="查詢" [raised]="true" severity="help" (click)="filterForms()" [style]="{'margin-left': '100px'}"></p-button>
+    <p-button size="small" label="新增" [raised]="true" severity="info" (click)="addForm()"></p-button>
+  </div>
+</div>
+
+<br>
+
+<!-- 表單顯示欄位 -->
+<p-table [value]="filteredForms.controls"
+         [resizableColumns]="true" 
+         styleClass="p-datatable-striped">
+    <!-- 欄位名稱 -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ rowNameForms.get('No')?.value }}</th>
+        <th>{{ rowNameForms.get('Name')?.value }}</th>
+        <th>{{ rowNameForms.get('Unit')?.value }}</th>
+        <th>{{ rowNameForms.get('Cash')?.value }}</th>
+        <th>{{ rowNameForms.get('AvalibleDate')?.value }}</th>
+        <th>{{ rowNameForms.get('SerialNo')?.value }}</th>
+        <th>操作</th>
+      </tr>
+    </ng-template>
+    <!-- 欄位內容 -->
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr>
+        <td>{{ row.value.No }}</td>
+        <td>{{ row.value.Name }}</td>
+        <td>{{ row.value.Unit }}</td>
+        <td>{{ row.value.Cash}}</td>
+        <td>{{ row.value.AvalibleDate}}</td>
+        <td>{{ row.value.SerialNo}}</td>
+        <td>
+          <p-button
+            pRipple
+            label="修改"
+            severity="success"
+            size="small"
+            [outlined]="true"
+            (onClick)="editItem(row.value)"
+          ></p-button>
+          <p-button 
+            pRipple 
+            label="刪除"
+            severity="danger" 
+            size="small"
+            [outlined]="true" 
+            (onClick)="deleteItem(i)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
+  
+<router-outlet></router-outlet>

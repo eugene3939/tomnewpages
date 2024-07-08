@@ -1,4 +1,4 @@
-//商品建檔
+//票券商品建檔
 import { Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '../shared-module/shared.module';
 //form builder
@@ -10,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
 import { Observable } from 'rxjs';
-import { MerchantUnit } from './../object/MerchantUnit';
+import { TicketUnit } from '../object/TicketUnit';
 
 @Component({
-  selector: 'app-page5',
+  selector: 'app-page6',
   standalone: true,
   imports: [
     SharedModuleModule,
@@ -25,11 +25,11 @@ import { MerchantUnit } from './../object/MerchantUnit';
     HttpClient,
     MessageService,
   ],
-  templateUrl: './page5.component.html',
-  styleUrl: './page5.component.scss'
+  templateUrl: './page6.component.html',
+  styleUrl: './page6.component.scss'
 })
-export class Page5Component implements OnInit{
-  searchRole: string = '';
+export class Page6Component implements OnInit{
+  searchNo: string = '';
   searchName: string = '';
 
   propertyForms: FormArray;               // 用FormArray管理table顯示內容
@@ -39,7 +39,7 @@ export class Page5Component implements OnInit{
   beforeEditingItem: FormGroup;           // 目前編輯中的項目
 
   //local json location
-  public jsonUrl = "assets/merchantUnit.json";
+  public jsonUrl = "assets/ticket.json";
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +59,7 @@ export class Page5Component implements OnInit{
         this.createForms(data); // 根據 JSON 數據建立表單控件
         this.filteredForms = this.propertyForms;  //篩選表單
         this.editForm.patchValue(this.filteredForms.at(0).value); //編輯表單初始為first row
-        this.beforeEditingItem = this.editForm;                   //編輯row回歸編輯前的狀態
+        this.beforeEditingItem = this.editForm;                   //編輯row回歸編輯前的狀Role態
         console.log('成功讀取 JSON 數據：', this.propertyForms);
       },
       error => {
@@ -69,57 +69,72 @@ export class Page5Component implements OnInit{
   }
 
   // 根據 JSON 數據建立表單控件
-  createForms(data: MerchantUnit[]): void {
+  createForms(data: TicketUnit[]): void {
     data.forEach(item => {
       this.propertyForms.push(this.createFormGroup(item));
     });
   }
 
-  createFormGroup(item: MerchantUnit): FormGroup {
+  createFormGroup(item: TicketUnit): FormGroup {
     return this.fb.group({
       No: [item.no],
+      Property: [item.property],
+      Category: [item.category],
       Name: [item.name],
       Unit: [item.unit],
-      Cash: [item.cash],
+      SerialManagement: [item.serialManagement],
       AvalibleDate: [item.avalibleDate],
-      SerialNo: [item.serialNo],
+      Gaphic: [item.gaphic],
+      Cash: [item.cash],
+      Tax: [item.tax],
+      Etc: [item.etc],
     });
   }
 
-  createEditForm(): FormGroup {   //
+  createEditForm(): FormGroup {
     return this.fb.group({
       No: ['', Validators.required],
+      Property: ['', Validators.required],
+      Category: ['', Validators.required],
       Name: ['', Validators.required],
       Unit: ['', Validators.required],
-      Cash: ['', Validators.required],
+      SerialManagement: ['', Validators.required],
       AvalibleDate: ['', Validators.required],
-      SerialNo: ['', Validators.required],
+      Gaphic: ['', Validators.required],
+      Cash: ['', Validators.required],
+      Tax: ['', Validators.required],
+      Etc: ['', Validators.required],
     });
   }
 
   createRowNameForm(): FormGroup {
     return this.fb.group({
       No: ['商品編號', Validators.required],
+      Property: ['商品屬性', Validators.required],
+      Category: ['類別', Validators.required],
       Name: ['商品名稱', Validators.required],
-      Unit: ['單位', Validators.required],
-      Cash: ['面額', Validators.required],
+      Unit: ['發行單位', Validators.required],
+      SerialManagement: ['序號管理', Validators.required],
       AvalibleDate: ['有效天數', Validators.required],
-      SerialNo: ['序號管理', Validators.required],
+      Gaphic: ['圖檔', Validators.required],
+      Cash: ['面額', Validators.required],
+      Tax: ['售價稅別', Validators.required],
+      Etc: ['備註', Validators.required],
     });
   }
 
   //篩選表單
   filterForms(): void {
     const SearchName = this.searchName.trim().toLowerCase();
-    const SearchNo = this.searchRole.trim().toLowerCase();
+    const SearchNo = this.searchNo.trim().toLowerCase();
 
     this.filteredForms = this.fb.array(
       this.propertyForms.controls.filter(group => {
         const name = group.get('Name')?.value?.toLowerCase() ?? '';
         const no = group.get('No')?.value?.toLowerCase() ?? '';
         const unitNameMatch = SearchName ? name.includes(SearchName) : true;
-        const unitNoleMatch = SearchNo ? no.includes(SearchNo) : true;
-        return unitNameMatch && unitNoleMatch;
+        const unitNoMatch = SearchNo ? no.includes(SearchNo) : true;
+        return unitNameMatch && unitNoMatch;
       })
     );
 
@@ -211,5 +226,4 @@ export class Page5Component implements OnInit{
   getJsonData(url: string): Observable<any>{
     return this.http.get<any>(url);
   }
-
 }

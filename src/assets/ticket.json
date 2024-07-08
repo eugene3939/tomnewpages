@@ -1,0 +1,15 @@
+[
+    { 
+        "no": "02240001",
+        "property": "01-票券商品",
+        "category": "01 折抵券",
+        "name": "洗車折抵券",
+        "unit": "01 洗晶寶",
+        "serialManagement": "Y/N (Y=序號管理 N=通行券)",
+        "avalibleDate": 360,
+        "gaphic": "02240001.jpg",
+        "cash": 200,
+        "tax": "應稅/免稅",
+        "etc": "這是備註"
+    }
+]

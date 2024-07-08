@@ -1,0 +1,4 @@
+[
+    { "no": "01240001", "name": "洗車券折抵券", "unit": "01洗晶寶", "cash": 200, "avalibleDate": 360, "serialNo": "Y" },
+    { "no": "01240002", "name": "免費洗車券", "unit": "01洗晶寶", "cash": 200, "avalibleDate": 360, "serialNo": "Y" }
+]
