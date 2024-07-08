@@ -19,40 +19,50 @@
       <input pInputText id="Pas" pKeyFilter="alpha" class="w-full" formControlName="Pas" />
     </div>
     <div>
-        <label for="Limit" class="font-bold block mb-2">{{ rowNameForms.get('Limit')?.value }}: </label>  
-        <input pInputText id="Limit" pKeyFilter="alpha" class="w-full" formControlName="Limit" />
-      </div>
-      <div>
-        <label for="StartDate" class="font-bold block mb-2">{{ rowNameForms.get('StartDate')?.value }}: </label>
-        <input pInputText id="StartDate" pKeyFilter="alpha" class="w-full" formControlName="StartDate" />
-      </div>
-      <div>
-        <label for="EndDate" class="font-bold block mb-2">{{ rowNameForms.get('EndDate')?.value }}: </label>
-        <input pInputText id="EndDate" pKeyFilter="int" class="w-full" formControlName="EndDate" />
-      </div>
-      <div>
-        <label for="Lock" class="font-bold block mb-2">{{ rowNameForms.get('Lock')?.value }}: </label>
-        <input pInputText id="Lock" pKeyFilter="alpha" class="w-full" formControlName="Lock" />
-      </div>
-      <div>
-        <label for="StopAccess" class="font-bold block mb-2">{{ rowNameForms.get('StopAccess')?.value }}: </label>  
-        <input pInputText id="StopAccess" pKeyFilter="alpha" class="w-full" formControlName="StopAccess" />
-      </div>
-      <div>
-        <label for="PasEdit" class="font-bold block mb-2">{{ rowNameForms.get('PasEdit')?.value }}: </label>
-        <input pInputText id="PasEdit" pKeyFilter="alpha" class="w-full" formControlName="PasEdit" />
-      </div>
-      <div>
-        <label for="Email" class="font-bold block mb-2">{{ rowNameForms.get('Email')?.value }}: </label>
-        <input pInputText id="Email" pKeyFilter="int" class="w-full" formControlName="Email" />
-      </div>
-      <div>
-        <label for="UnitNo" class="font-bold block mb-2">{{ rowNameForms.get('UnitNo')?.value }}: </label>
-        <input pInputText id="UnitNo" pKeyFilter="alpha" class="w-full" formControlName="UnitNo" />
-      </div>
-      <div>
-        <label for="Role" class="font-bold block mb-2">{{ rowNameForms.get('Role')?.value }}: </label>
-        <input pInputText id="Role" pKeyFilter="alpha" class="w-full" formControlName="Role" />
-      </div>
+      <label for="Limit" class="font-bold block mb-2">{{ rowNameForms.get('Limit')?.value }}: </label>  
+      <input pInputText id="Limit" pKeyFilter="int" class="w-full" formControlName="Limit" />
+      <select>
+        <option>永久</option>
+        <option>暫時</option>
+        <option>無限制</option>
+      </select>
+    </div>
+    <div>
+      <label for="StartDate" class="font-bold block mb-2">{{ rowNameForms.get('StartDate')?.value }}: </label>
+      <input pInputText id="StartDate" pKeyFilter="alpha" class="w-full" formControlName="StartDate" />
+    </div>
+    <div>
+      <label for="EndDate" class="font-bold block mb-2">{{ rowNameForms.get('EndDate')?.value }}: </label>
+      <input pInputText id="EndDate" pKeyFilter="int" class="w-full" formControlName="EndDate" />
+    </div>
+    <div>
+      <label for="Lock" class="font-bold block mb-2">{{ rowNameForms.get('Lock')?.value }}: </label>
+      <input pInputText id="Lock" pKeyFilter="alpha" class="w-full" formControlName="Lock" />
+    </div>
+    <div>
+      <label for="StopAccess" class="font-bold block mb-2">{{ rowNameForms.get('StopAccess')?.value }}: </label>  
+      <input pInputText id="StopAccess" pKeyFilter="alpha" class="w-full" formControlName="StopAccess" />
+    </div>
+    <div>
+      <label for="PasEdit" class="font-bold block mb-2">{{ rowNameForms.get('PasEdit')?.value }}: </label>
+      <input pInputText id="PasEdit" pKeyFilter="alpha" class="w-full" formControlName="PasEdit" />
+    </div>
+    <div>
+      <label for="Email" class="font-bold block mb-2">{{ rowNameForms.get('Email')?.value }}: </label>
+      <input pInputText id="Email" pKeyFilter="int" class="w-full" formControlName="Email" />
+    </div>
+    <div>
+      <label for="UnitNo" class="font-bold block mb-2">{{ rowNameForms.get('UnitNo')?.value }}: </label>
+      <input pInputText id="UnitNo" pKeyFilter="alpha" class="w-full" formControlName="UnitNo" />
+    </div>
+    <div>
+      <label for="Role" class="font-bold block mb-2">{{ rowNameForms.get('Role')?.value }}: </label>
+      <input pInputText id="Role" pKeyFilter="alpha" class="w-full" formControlName="Role" />
+    </div>
   </form>
-  
+
+<!-- 表單修改欄位(必須點擊修改開啟) -->
+<div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
+  <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" (onClick)="backtoEditMode()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</div>

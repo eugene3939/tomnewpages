@@ -38,6 +38,8 @@ export class Page4Component implements OnInit{
   editForm: FormGroup;                    // 編輯表單
   beforeEditingItem: FormGroup;           // 目前編輯中的項目
 
+  LimitOption: any;
+
   //local json location
   public jsonUrl = "assets/userInfo.json";
 
@@ -51,6 +53,12 @@ export class Page4Component implements OnInit{
     this.beforeEditingItem = this.fb.group([]);
     this.rowNameForms = this.createRowNameForm();   ////建立欄位名稱formgroup
     this.editForm = this.createEditForm();          //建立編輯表單
+
+    this.LimitOption = [
+      { state: 'f', name: '永久' },
+      { state: 'm', name: '暫時' },
+      { state: 'n', name: '無' },
+    ];
   }
 
   ngOnInit(): void {
@@ -93,15 +101,15 @@ export class Page4Component implements OnInit{
     });
   }
 
-  createEditForm(): FormGroup {   //
+  createEditForm(): FormGroup {
     return this.fb.group({
       Code: ['', Validators.required],
       Name: ['', Validators.required],
       EngName: ['', Validators.required],
       Pas: ['', Validators.required],
       Limit: ['', Validators.required],
-      StartDate: ['', Validators.required],
-      EndDate: ['', Validators.required],
+      StartDate: { value: '', disabled: true },
+      EndDate: { value: '', disabled: true },
       Lock: ['', Validators.required],
       StopAccess: ['', Validators.required],
       PasEdit: ['', Validators.required],

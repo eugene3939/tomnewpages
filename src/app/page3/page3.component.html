@@ -5,8 +5,8 @@
 <div>
   <div style="display: flex; gap: 10px">
     <p-inputGroup [style]="{'flex': '1'}">
-      <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
-      <input type="text" pInputText placeholder="請輸入單位名稱" [(ngModel)]="searchName">
+      <p-inputGroupAddon>關鍵字</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="關鍵字查詢" [(ngModel)]="searchName">
     </p-inputGroup>
 
     <p-button size="small" label="查詢" [raised]="true" severity="help" (click)="filterForms()" [style]="{'margin-left': '100px'}"></p-button>
@@ -18,7 +18,9 @@
 
 <!-- 表單顯示欄位 -->
 <p-table [value]="filteredForms.controls"
-         [resizableColumns]="true" 
+         [resizableColumns]="true"
+         [paginator]="true"
+         [rows]="2"
          styleClass="p-datatable-striped">
     <!-- 欄位名稱 -->
     <ng-template pTemplate="header">
@@ -27,7 +29,7 @@
         <th>{{ rowNameForms.get('No')?.value }}</th>
         <th>{{ rowNameForms.get('ModifyPerson')?.value }}</th>
         <th>{{ rowNameForms.get('ModifyDate')?.value }}</th>
-        <th>操作</th>
+        <th>功能</th>
       </tr>
     </ng-template>
     <!-- 欄位內容 -->
@@ -40,19 +42,11 @@
         <td>
           <p-button
             pRipple
-            label="修改"
+            label="編輯"
             severity="success"
             size="small"
             [outlined]="true"
             (onClick)="editItem(row.value)"
-          ></p-button>
-          <p-button 
-            pRipple 
-            label="刪除"
-            severity="danger" 
-            size="small"
-            [outlined]="true" 
-            (onClick)="deleteItem(i)"
           ></p-button>
         </td>
       </tr>

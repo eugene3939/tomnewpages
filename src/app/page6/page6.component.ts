@@ -144,16 +144,14 @@ export class Page6Component implements OnInit{
   // 新增表單
   addForm(): void {
     if (this.editForm.valid) {
-      const newForm = this.createFormGroup(this.editForm.value);
-
-      if (this.propertyForms.controls.some(form => form.value.No === newForm.value.No)) {
+      if (this.propertyForms.controls.some(form => form.value.UnitNo === this.editForm.value.UnitNo)) {
         console.warn('已存在相同的單位編號，請修改後再試。');
         return;
       }
-
-      this.propertyForms.push(newForm);
+  
+      this.propertyForms.push(this.editForm);
       this.filteredForms = this.propertyForms;
-      console.log('新增成功', this.propertyForms.value);
+      console.log('新增成功', this.editForm.value);
     } else {
       console.warn('編輯表單無效，無法新增');
     }

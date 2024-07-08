@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
@@ -28,6 +29,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     ButtonModule,
     TableModule,
     InputGroupAddonModule,
+    ImageModule,
     ToastModule,
     DropdownModule,
     TagModule,
@@ -47,6 +49,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     ButtonModule,
     TableModule,
     InputGroupAddonModule,
+    ImageModule,
     ToastModule,
     DropdownModule,
     TagModule,
