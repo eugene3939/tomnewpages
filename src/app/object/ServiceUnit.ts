@@ -1,5 +1,5 @@
 //使用單位建檔 (欄位定義檔)
-export interface MyProperty{
+export interface ServiceUnit{
     UnitNo: string;
     UnitName: string;
     UnitCode: string;

@@ -9,8 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
 import { Observable } from 'rxjs';
-
-import { MyProperty } from '../object/MyProperty';
+import { ServiceUnit } from '../object/ServiceUnit'
 
 @Component({
   selector: 'app-page1',
@@ -36,6 +35,7 @@ export class Page1Component implements OnInit{
   filteredForms: FormArray;               // 篩選的表單內容
   rowNameForms: FormGroup;                // 欄位名稱
   editForm: FormGroup;                    // 編輯表單
+  beforeEditingItem: FormGroup;           // 目前編輯中的項目
 
   //local json location
   public jsonUrl = "assets/lproperty.json";
@@ -47,6 +47,7 @@ export class Page1Component implements OnInit{
   ) {
     this.propertyForms = this.fb.array([]);
     this.filteredForms = this.fb.array([]);
+    this.beforeEditingItem = this.fb.group([]);
 
     this.rowNameForms = this.fb.group({ //建立欄位名稱formgroup
       UnitNo: ['單位編號', Validators.required],
@@ -73,6 +74,7 @@ export class Page1Component implements OnInit{
         this.createForms(data); // 根據 JSON 數據建立表單控件
         this.filteredForms = this.propertyForms;  //篩選表單
         this.editForm.patchValue(this.filteredForms.at(0).value); //編輯表單初始為first row
+        this.beforeEditingItem = this.editForm;                   //編輯row回歸編輯前的狀態
         console.log('成功讀取 JSON 數據：', this.propertyForms);
       },
       error => {
@@ -82,7 +84,7 @@ export class Page1Component implements OnInit{
   }
 
   // 根據 JSON 數據建立表單控件
-  createForms(data: MyProperty[]): void {
+  createForms(data: ServiceUnit[]): void {
     data.forEach(item => {
       const group = this.fb.group({
         UnitNo: [item.UnitNo],
@@ -168,6 +170,12 @@ export class Page1Component implements OnInit{
   editItem(item : any): void{
     this.editForm.patchValue(item); // 將選中的行數據設置到編輯表單中
     console.log('編輯成功', item);
+  }
+
+  //回到編輯前的狀態
+  backtoEditMode(): void{
+    console.log('先前狀態',this.beforeEditingItem.value)
+    this.editForm.patchValue(this.beforeEditingItem.value); //編輯row設置回歸編輯前的狀態
   }
 
   //儲存編輯後的row

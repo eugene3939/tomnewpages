@@ -1,23 +1,100 @@
 <br>
-<form [formGroup]="filterForm" (ngSubmit)="onFilter()">
-    <label for="role">角色編號</label>
-    <input id="role" formControlName="role" type="text">
-  
-    <label for="name">角色名稱</label>
-    <input id="name" formControlName="name" type="text">
-  
-    <button type="submit">查詢</button>
-    <button (click)="openAddDataPage()">新增</button>
-  </form>
-  
-  <div *ngIf="filteredData.length > 0">
-    <h3>Filtered Data:</h3>
-    <ul>
-      <li *ngFor="let item of filteredData">
-        {{ item.role }} - {{ item.name }}
-      </li>
-    </ul>
+<!-- 使用單位建檔 -->
+
+<!-- 表單搜尋列 -->
+<div>
+  <div style="display: flex; gap: 10px">
+    <p-inputGroup [style]="{'flex': '1'}">
+      <p-inputGroupAddon>單位編號</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位編號" [(ngModel)]="searchRole">
+
+      <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位名稱" [(ngModel)]="searchName">
+    </p-inputGroup>
+
+    <p-button size="small" label="查詢" [raised]="true" severity="help" (click)="filterForms()" [style]="{'margin-left': '100px'}"></p-button>
+    <p-button size="small" label="新增" [raised]="true" severity="info" (click)="addForm()"></p-button>
   </div>
-  <div *ngIf="filteredData.length === 0">
-    <p>No data matches the filter criteria.</p>
+</div>
+
+<br>
+
+<!-- 表單顯示欄位 -->
+<p-table [value]="filteredForms.controls"
+         [resizableColumns]="true" 
+         styleClass="p-datatable-striped">
+    <!-- 欄位名稱 -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ rowNameForms.get('Role')?.value }}</th>
+        <th>{{ rowNameForms.get('Name')?.value }}</th>
+        <th>{{ rowNameForms.get('UnitNo')?.value }}</th>
+        <th>{{ rowNameForms.get('Program_member')?.value }}</th>
+        <th>{{ rowNameForms.get('Program')?.value }}</th>
+        <th>操作</th>
+      </tr>
+    </ng-template>
+    <!-- 欄位內容 -->
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr>
+        <td>{{ row.value.Role }}</td>
+        <td>{{ row.value.Name }}</td>
+        <td>{{ row.value.UnitNo }}</td>
+        <td>{{ row.value.Program_member}}</td>
+        <td>{{ row.value.Program}}</td>
+        <td>
+          <p-button
+            pRipple
+            label="修改"
+            severity="success"
+            size="small"
+            [outlined]="true"
+            (onClick)="editItem(row.value)"
+          ></p-button>
+          <p-button 
+            pRipple 
+            label="刪除"
+            severity="danger" 
+            size="small"
+            [outlined]="true" 
+            (onClick)="deleteItem(i)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
+
+<br>
+
+<!-- 編輯表單 -->
+<form [formGroup]="editForm">
+  <div>
+    <label for="Role" class="font-bold block mb-2">{{ rowNameForms.get('Role')?.value }}: </label>  
+    <input pInputText id="Role" pKeyFilter="alpha" class="w-full" formControlName="Role" />
   </div>
+  <div>
+    <label for="Name" class="font-bold block mb-2">{{ rowNameForms.get('Name')?.value }}: </label>
+    <input pInputText id="Name" pKeyFilter="alpha" class="w-full" formControlName="Name" />
+  </div>
+  <div>
+    <label for="UnitNo" class="font-bold block mb-2">{{ rowNameForms.get('UnitNo')?.value }}: </label>
+    <input pInputText id="UnitNo" pKeyFilter="int" class="w-full" formControlName="UnitNo" />
+  </div>
+  <div>
+    <label for="Program_member" class="font-bold block mb-2">{{ rowNameForms.get('Program_member')?.value }}: </label>
+    <input pInputText id="Program_member" pKeyFilter="alpha" class="w-full" formControlName="Program_member" />
+  </div>
+  <div>
+    <label for="Program" class="font-bold block mb-2">{{ rowNameForms.get('Program')?.value }}: </label>
+    <input pInputText id="Program" pKeyFilter="alpha" class="w-full" formControlName="Program" />
+  </div>
+</form>
+
+
+<!-- 表單修改欄位(必須點擊修改開啟) -->
+<div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
+  <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" (onClick)="backtoEditMode()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</div>
+  
+<router-outlet></router-outlet>

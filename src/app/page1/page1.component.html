@@ -100,7 +100,7 @@
 <!-- 表單修改欄位(必須點擊修改開啟) -->
 <div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
   <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
-  <p-button size="small" label="取消" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" (onClick)="backtoEditMode()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
 </div>
   
 <router-outlet></router-outlet>
