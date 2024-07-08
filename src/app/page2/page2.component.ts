@@ -1,3 +1,4 @@
+//角色管理
 import { Component, OnInit } from '@angular/core';
 import { SharedModuleModule } from '../shared-module/shared.module';
 //form builder
@@ -48,22 +49,8 @@ export class Page2Component implements OnInit{
     this.propertyForms = this.fb.array([]);
     this.filteredForms = this.fb.array([]);
     this.beforeEditingItem = this.fb.group([]);
-
-    this.rowNameForms = this.fb.group({ //建立欄位名稱formgroup
-      Role: ['角色代碼', Validators.required],
-      Name: ['角色名稱', Validators.required],
-      UnitNo: ['單位編號', [Validators.required]],
-      Program_member: ['程式項目 (會員管理)', [Validators.required]],
-      Program: ['程式項目 (管理)', [Validators.required]],
-    });
-
-    this.editForm = this.fb.group({ //建立編輯表單
-      Role: ['', Validators.required], // 使用 disabled 屬性來禁用編輯
-      Name: ['', Validators.required],
-      UnitNo: ['', Validators.required],
-      Program_member: ['', Validators.required],
-      Program: ['', Validators.required],
-    });
+    this.rowNameForms = this.createRowNameForm();   ////建立欄位名稱formgroup
+    this.editForm = this.createEditForm();          //建立編輯表單
   }
 
   ngOnInit(): void {
@@ -84,14 +71,37 @@ export class Page2Component implements OnInit{
   // 根據 JSON 數據建立表單控件
   createForms(data: RoleUnit[]): void {
     data.forEach(item => {
-      const group = this.fb.group({
-        Role: [item.role],
-        Name: [item.name],
-        UnitNo: [item.unitNo],
-        Program_member: [item.program_member],
-        Program: [item.program],
-      });
-      this.propertyForms.push(group); // 將每個 FormGroup 添加到 FormArray 中
+      this.propertyForms.push(this.createFormGroup(item));
+    });
+  }
+
+  createFormGroup(item: RoleUnit): FormGroup {
+    return this.fb.group({
+      Role: [item.role],
+      Name: [item.name],
+      UnitNo: [item.unitNo],
+      Program_member: [item.program_member],
+      Program: [item.program],
+    });
+  }
+
+  createEditForm(): FormGroup {   //
+    return this.fb.group({
+      Role: ['', Validators.required],
+      Name: ['', Validators.required],
+      UnitNo: ['', Validators.required],
+      Program_member: ['', Validators.required],
+      Program: ['', Validators.required],
+    });
+  }
+
+  createRowNameForm(): FormGroup {
+    return this.fb.group({
+      Role: ['角色代碼', Validators.required],
+      Name: ['角色名稱', Validators.required],
+      UnitNo: ['單位編號', Validators.required],
+      Program_member: ['程式項目 (管理)', Validators.required],
+      Program: ['程式項目 (會員管理)', Validators.required],
     });
   }
 
@@ -116,25 +126,15 @@ export class Page2Component implements OnInit{
   // 新增表單
   addForm(): void {
     if (this.editForm.valid) {
-      const newForm = this.fb.group({
-        Role: [this.editForm.get('Role')?.value, Validators.required],
-        Name: [this.editForm.get('Name')?.value, Validators.required],
-        UnitNo: [this.editForm.get('UnitNo')?.value, Validators.required],
-        Program_member: [this.editForm.get('Program_member')?.value, Validators.required],
-        Program: [this.editForm.get('Program')?.value, Validators.required]
-      });
+      const newForm = this.createFormGroup(this.editForm.value);
 
-      // 檢查是否已經有相同 UnitNo，如果有則跳出警告
-      const unitRoleExists = this.propertyForms.controls.some(form => form.value.Role === newForm.value.Role);
-      if (unitRoleExists) {
+      if (this.propertyForms.controls.some(form => form.value.UnitNo === newForm.value.UnitNo)) {
         console.warn('已存在相同的單位編號，請修改後再試。');
         return;
       }
 
-      this.propertyForms.push(newForm); // 將新建的 FormGroup 添加到 FormGroup 陣列中
-      this.filteredForms = this.propertyForms; // 更新篩選清單
-  
-      // 重新載入表單
+      this.propertyForms.push(newForm);
+      this.filteredForms = this.propertyForms;
       console.log('新增成功', this.propertyForms.value);
     } else {
       console.warn('編輯表單無效，無法新增');

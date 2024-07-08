@@ -1,0 +1,6 @@
+[
+    { "name": "角色管理", "no": 501, "modifyPerson": "修改者A", "modifyDate": "日期A" },
+    { "name": "程式管理", "no": 502, "modifyPerson": "修改者B", "modifyDate": "日期B" },
+    { "name": "授權管理", "no": 503, "modifyPerson": "修改者C", "modifyDate": "日期C" },
+    { "name": "系統帳號管理", "no": 504, "modifyPerson": "修改者D", "modifyDate": "日期D" }
+]
