@@ -1,1 +1,91 @@
-<p>page3 works!</p>
+<br>
+<!-- 使用單位建檔 -->
+
+<!-- 表單搜尋列 -->
+<div>
+  <div style="display: flex; gap: 10px">
+    <p-inputGroup [style]="{'flex': '1'}">
+      <p-inputGroupAddon>單位名稱</p-inputGroupAddon>
+      <input type="text" pInputText placeholder="請輸入單位名稱" [(ngModel)]="searchName">
+    </p-inputGroup>
+
+    <p-button size="small" label="查詢" [raised]="true" severity="help" (click)="filterForms()" [style]="{'margin-left': '100px'}"></p-button>
+    <p-button size="small" label="新增" [raised]="true" severity="info" (click)="addForm()"></p-button>
+  </div>
+</div>
+
+<br>
+
+<!-- 表單顯示欄位 -->
+<p-table [value]="filteredForms.controls"
+         [resizableColumns]="true" 
+         styleClass="p-datatable-striped">
+    <!-- 欄位名稱 -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ rowNameForms.get('Name')?.value }}</th>
+        <th>{{ rowNameForms.get('No')?.value }}</th>
+        <th>{{ rowNameForms.get('ModifyPerson')?.value }}</th>
+        <th>{{ rowNameForms.get('ModifyDate')?.value }}</th>
+        <th>操作</th>
+      </tr>
+    </ng-template>
+    <!-- 欄位內容 -->
+    <ng-template pTemplate="body" let-row let-i="rowIndex">
+      <tr>
+        <td>{{ row.value.Name }}</td>
+        <td>{{ row.value.No }}</td>
+        <td>{{ row.value.ModifyPerson }}</td>
+        <td>{{ row.value.ModifyDate}}</td>
+        <td>
+          <p-button
+            pRipple
+            label="修改"
+            severity="success"
+            size="small"
+            [outlined]="true"
+            (onClick)="editItem(row.value)"
+          ></p-button>
+          <p-button 
+            pRipple 
+            label="刪除"
+            severity="danger" 
+            size="small"
+            [outlined]="true" 
+            (onClick)="deleteItem(i)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
+
+<br>
+
+<!-- 編輯表單 -->
+<form [formGroup]="editForm">
+  <div>
+    <label for="Name" class="font-bold block mb-2">{{ rowNameForms.get('Name')?.value }}: </label>  
+    <input pInputText id="Name" pKeyFilter="alpha" class="w-full" formControlName="Name" />
+  </div>
+  <div>
+    <label for="No" class="font-bold block mb-2">{{ rowNameForms.get('No')?.value }}: </label>
+    <input pInputText id="No" pKeyFilter="alpha" class="w-full" formControlName="No" />
+  </div>
+  <div>
+    <label for="ModifyPerson" class="font-bold block mb-2">{{ rowNameForms.get('ModifyPerson')?.value }}: </label>
+    <input pInputText id="ModifyPerson" pKeyFilter="int" class="w-full" formControlName="ModifyPerson" />
+  </div>
+  <div>
+    <label for="ModifyDate" class="font-bold block mb-2">{{ rowNameForms.get('ModifyDate')?.value }}: </label>
+    <input pInputText id="ModifyDate" pKeyFilter="alpha" class="w-full" formControlName="ModifyDate" />
+  </div>
+</form>
+
+
+<!-- 表單修改欄位(必須點擊修改開啟) -->
+<div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 10px;">
+  <p-button size="small" label="存檔" (onClick)="saveEditRow()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+  <p-button size="small" label="取消" (onClick)="backtoEditMode()" [raised]="true" severity="success" styleClass="horizontal-text-button"></p-button>
+</div>
+  
+<router-outlet></router-outlet>

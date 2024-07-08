@@ -1,0 +1,17 @@
+[
+    { 
+    "code": "024777",
+    "name": "王曉明",
+    "EngName": "SMing",
+    "pas": "123",
+    "limit": "永久",
+    "startDate": "20240708",
+    "endDate": "20240709",
+    "lock": "鎖定",
+    "stopAccess": "否",
+    "pasEdit": "否",
+    "email": "abc@gmail.com",
+    "unitNo": "01洗精寶",
+    "role": "Manger 經理" 
+    }
+]
