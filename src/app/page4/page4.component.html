@@ -21,10 +21,10 @@
     <div>
       <label for="Limit" class="font-bold block mb-2">{{ rowNameForms.get('Limit')?.value }}: </label>  
       <input pInputText id="Limit" pKeyFilter="int" class="w-full" formControlName="Limit" />
-      <select>
-        <option>永久</option>
-        <option>暫時</option>
-        <option>無限制</option>
+      <select formControlName="Limit">
+        <option value="permanent">永久</option>
+        <option value="temporary">暫時</option>
+        <option value="unlimited">無限制</option>
       </select>
     </div>
     <div>
@@ -38,14 +38,26 @@
     <div>
       <label for="Lock" class="font-bold block mb-2">{{ rowNameForms.get('Lock')?.value }}: </label>
       <input pInputText id="Lock" pKeyFilter="alpha" class="w-full" formControlName="Lock" />
+      <select formControlName="Lock">
+        <option value="lock">鎖定</option>
+        <option value="nonlock">不鎖定</option>
+      </select>
     </div>
     <div>
       <label for="StopAccess" class="font-bold block mb-2">{{ rowNameForms.get('StopAccess')?.value }}: </label>  
       <input pInputText id="StopAccess" pKeyFilter="alpha" class="w-full" formControlName="StopAccess" />
+      <select formControlName="StopAccess">
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
     </div>
     <div>
       <label for="PasEdit" class="font-bold block mb-2">{{ rowNameForms.get('PasEdit')?.value }}: </label>
       <input pInputText id="PasEdit" pKeyFilter="alpha" class="w-full" formControlName="PasEdit" />
+      <select formControlName="PasEdit">
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
     </div>
     <div>
       <label for="Email" class="font-bold block mb-2">{{ rowNameForms.get('Email')?.value }}: </label>

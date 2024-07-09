@@ -49,7 +49,7 @@ export class Page1Component implements OnInit{
     this.propertyForms = this.fb.array([]);
     this.filteredForms = this.fb.array([]);
     this.beforeEditingItem = this.fb.group([]);
-    this.rowNameForms = this.createRowNameForm();   ////建立欄位名稱formgroup
+    this.rowNameForms = this.createRowNameForm();   //建立欄位名稱formgroup
     this.editForm = this.createEditForm();          //建立編輯表單
   }
 
