@@ -28,5 +28,6 @@ export class AppComponent {
     { label: '使用者帳號管理', icon: 'pi pi-fw pi-calendar', routerLink: ['/page4'] },
     { label: '商品建檔', icon: 'pi pi-fw pi-calendar', routerLink: ['/page5'] },
     { label: '票券商品建檔', icon: 'pi pi-fw pi-calendar', routerLink: ['/page6'] },
+    { label: '表單模板', icon: 'pi pi-fw pi-calendar' , routerLink: ['/formTemplate']}
   ];
 }
