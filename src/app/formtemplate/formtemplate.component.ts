@@ -1,9 +1,10 @@
+import { SharedModuleModule } from './../shared-module/shared.module';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-formtemplate',
   standalone: true,
-  imports: [],
+  imports: [SharedModuleModule],
   templateUrl: './formtemplate.component.html',
   styleUrl: './formtemplate.component.scss'
 })

@@ -7,6 +7,7 @@ import { Page5Component } from './page5/page5.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { Page6Component } from './page6/page6.component';
 import { FormtemplateComponent } from './formtemplate/formtemplate.component';
+import { ContacttemplateComponent } from './contacttemplate/contacttemplate.component';
 
 export const routes: Routes = [
 { path: '', redirectTo: '/page1', pathMatch: 'full' },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'page5', component: Page5Component },
   { path: 'page6', component: Page6Component },
   { path: 'formTemplate', component: FormtemplateComponent },
+  { path: 'contactTemplate', component: ContacttemplateComponent },
   { path: 'add-form', component: AddFormComponent},
 ];

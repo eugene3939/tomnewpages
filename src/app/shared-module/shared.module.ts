@@ -12,8 +12,10 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { HttpClientModule } from '@angular/common/http';
 import { KeyFilterModule } from 'primeng/keyfilter';
 
@@ -37,6 +39,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     DialogModule,
     ConfirmPopupModule,
     KeyFilterModule,
+    InputSwitchModule,
+    DividerModule,
     HttpClientModule,
   ],
   exports: [
@@ -57,6 +61,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     DialogModule,
     ConfirmPopupModule,
     KeyFilterModule,
+    InputSwitchModule,
+    DividerModule,
     HttpClientModule,
   ],
 })
