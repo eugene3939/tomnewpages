@@ -22,9 +22,9 @@
       <label for="Limit" class="font-bold block mb-2">{{ rowNameForms.get('Limit')?.value }}: </label>  
       <input pInputText id="Limit" pKeyFilter="int" class="w-full" formControlName="Limit" />
       <select formControlName="Limit">
-        <option value="permanent">永久</option>
-        <option value="temporary">暫時</option>
-        <option value="unlimited">無限制</option>
+        <option *ngFor="let option of limitOptions" [value]="option.code">
+          {{ option.name }}
+        </option>
       </select>
     </div>
     <div>

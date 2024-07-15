@@ -12,6 +12,11 @@ import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { UserInfo } from '../object/UserInfo';
 
+interface City {
+  name: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-page4',
   standalone: true,
@@ -32,6 +37,8 @@ export class Page4Component implements OnInit{
   searchRole: string = '';
   searchName: string = '';
 
+  limitOptions: { name: string, code: string }[];
+
   propertyForms: FormArray;               // 用FormArray管理table顯示內容
   filteredForms: FormArray;               // 篩選的表單內容
   rowNameForms: FormGroup;                // 欄位名稱
@@ -51,6 +58,12 @@ export class Page4Component implements OnInit{
     this.beforeEditingItem = this.fb.group([]);
     this.rowNameForms = this.createRowNameForm();   ////建立欄位名稱formgroup
     this.editForm = this.createEditForm();          //建立編輯表單
+
+    this.limitOptions = [
+      { name: '永久', code: 'permanent' },
+      { name: '暫時', code: 'temporary' },
+      { name: '無限制', code: 'unlimited' }
+    ];
   }
 
   ngOnInit(): void {

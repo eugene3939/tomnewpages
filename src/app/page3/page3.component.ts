@@ -164,7 +164,7 @@ export class Page3Component implements OnInit{
   //回到編輯前的狀態
   backtoEditMode(): void{
     console.log('先前狀態',this.beforeEditingItem.value)
-    this.editForm.patchValue(this.beforeEditingItem.value); //編輯row設置回歸編輯前的狀態
+    this.editForm.patchValue(this.beforeEditingItem.value); //編輯row設置回歸編輯前的狀態    
   }
 
   //儲存編輯後的row
