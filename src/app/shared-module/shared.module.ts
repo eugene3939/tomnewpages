@@ -47,6 +47,7 @@ import { FormGroup } from '@angular/forms';
     InputSwitchModule,
     DividerModule,
     AvatarModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   exports: [
@@ -71,6 +72,7 @@ import { FormGroup } from '@angular/forms';
     InputSwitchModule,
     DividerModule,
     AvatarModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
 })

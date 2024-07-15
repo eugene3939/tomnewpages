@@ -8,7 +8,8 @@ import { AddFormComponent } from './add-form/add-form.component';
 import { Page6Component } from './page6/page6.component';
 import { FormtemplateComponent } from './formtemplate/formtemplate.component';
 import { ContacttemplateComponent } from './contacttemplate/contacttemplate.component';
-import { ContactformComponent } from './contactform/contactform.component';
+import { PaymentComponent } from './payment/payment.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 export const routes: Routes = [
 { path: '', redirectTo: '/page1', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'page6', component: Page6Component },
   { path: 'formTemplate', component: FormtemplateComponent },
   { path: 'contactTemplate', component: ContacttemplateComponent },
-  { path: 'contactform', component: ContactformComponent },
   { path: 'add-form', component: AddFormComponent},
+  { path: 'payment', component: PaymentComponent},
+  { path: 'invoice', component: InvoiceComponent},
 ];

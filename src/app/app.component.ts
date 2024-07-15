@@ -29,7 +29,8 @@ export class AppComponent {
     { label: '商品建檔', icon: 'pi pi-fw pi-calendar', routerLink: ['/page5'] },
     { label: '票券商品建檔', icon: 'pi pi-fw pi-calendar', routerLink: ['/page6'] },
     { label: '表單模板', icon: 'pi pi-fw pi-calendar' , routerLink: ['/formTemplate']},
-    { label: '聯絡樣式模板', icon: 'pi pi-fw pi-calendar' , routerLink: ['/contactTemplate']},
-    { label: '表單模板2', icon: 'pi pi-fw pi-calendar' , routerLink: ['/contactform']},
+    // { label: '聯絡樣式模板', icon: 'pi pi-fw pi-calendar' , routerLink: ['/contactTemplate']},
+    { label: '電子發票', icon: 'pi pi-fw pi-calendar' , routerLink: ['/payment']},
+    { label: '付款單', icon: 'pi pi-fw pi-calendar' , routerLink: ['/invoice']},
   ];
 }
