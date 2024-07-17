@@ -14,11 +14,6 @@ import { TicketUnit } from '../object/TicketUnit';
 
 @Component({
   selector: 'app-page6',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,

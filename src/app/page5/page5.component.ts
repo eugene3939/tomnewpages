@@ -14,11 +14,6 @@ import { MerchantUnit } from './../object/MerchantUnit';
 
 @Component({
   selector: 'app-page5',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,

@@ -11,6 +11,7 @@ import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { DividerModule } from 'primeng/divider';
@@ -27,6 +28,7 @@ import { FormGroup } from '@angular/forms';
   declarations: [],
   imports: [
     CommonModule,
+    CalendarModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -52,6 +54,7 @@ import { FormGroup } from '@angular/forms';
   ],
   exports: [
     CommonModule,
+    CalendarModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

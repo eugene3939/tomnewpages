@@ -19,11 +19,6 @@ interface City {
 
 @Component({
   selector: 'app-page4',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,

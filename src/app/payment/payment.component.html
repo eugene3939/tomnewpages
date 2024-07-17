@@ -1,1 +1,37 @@
-<p>payment works!</p>
+<div [formGroup]="propertyForms">
+    <label for="date" class="font-bold block mb-2">日期: </label>  
+    <p-calendar id="date" formControlName="date"/><br>
+
+    <label for="title" class="font-bold block mb-2">題目: </label>  
+    <input pInputText id="title" pKeyFilter="num" class="w-full" formControlName="title" /><br>
+
+    <label for="signProcess" class="font-bold block mb-2">簽核流程: </label>  
+    <input pInputText id="signProcess" pKeyFilter="num" class="w-full" formControlName="signProcess" /><br>
+
+    <label for="signePerson" class="font-bold block mb-2">簽核者: </label>  
+    <input pInputText id="signePerson" pKeyFilter="num" class="w-full" formControlName="signePerson" /><br>
+
+    <label for="patch" class="font-bold block mb-2">副本: </label>  
+    <input pInputText id="patch" pKeyFilter="num" class="w-full" formControlName="patch" /><br>
+
+    <label for="shared" class="font-bold block mb-2">共有人: </label>  
+    <input pInputText id="shared" pKeyFilter="num" class="w-full" formControlName="shared" /><br>
+
+    <!-- (憑證、單據)、報表 -->
+    <label for="signPaper" class="font-bold block mb-2">簽核文件: </label>  
+    <input pInputText id="signPaper" pKeyFilter="num" class="w-full" formControlName="signPaper" /><br>
+
+    <!-- 付款單(新增、拋轉)、出勤管理、應收憑證、全部選單 -->
+    <label for="attach" class="font-bold block mb-2">附件: </label>  
+    <input pInputText id="attach" pKeyFilter="num" class="w-full" formControlName="attach" /><br>
+
+    <label for="tag" class="font-bold block mb-2">標籤: </label>  
+    <input pInputText id="tag" pKeyFilter="num" class="w-full" formControlName="tag" /><br>
+</div>
+
+<textarea 
+    rows="5"
+    cols="30" 
+    pInputTextarea 
+    [(ngModel)]="textAreaValue">
+</textarea>

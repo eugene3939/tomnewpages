@@ -14,11 +14,6 @@ import { ProgramUnit } from '../object/ProgramUnit'
 
 @Component({
   selector: 'app-page3',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,

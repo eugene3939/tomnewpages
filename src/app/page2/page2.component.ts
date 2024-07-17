@@ -14,11 +14,6 @@ import { RoleUnit } from '../object/RoleUnit';
 
 @Component({
   selector: 'app-page2',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,

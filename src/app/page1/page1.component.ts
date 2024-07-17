@@ -14,11 +14,6 @@ import { ServiceUnit } from '../object/ServiceUnit'
 
 @Component({
   selector: 'app-page1',
-  standalone: true,
-  imports: [
-    SharedModuleModule,
-    FormsModule,
-  ],
   providers:[
     ConfirmationService,
     DialogService,
